@@ -19,7 +19,7 @@ public:
         currentPlayer = 0;
     }
 
-    EMSCRIPTEN_KEEPALIVE
+
     void makeMove(int pit) {
         if (!isValidMove(pit)) 
             return;
@@ -44,7 +44,6 @@ public:
         switchPlayer();
     }
 
-    EMSCRIPTEN_KEEPALIVE
     void undoMove() {
         if (history.empty()) return;
 
@@ -55,7 +54,6 @@ public:
         history.pop();
     }
 
-    EMSCRIPTEN_KEEPALIVE
     void displayBoard() const {
         for (int i = 0; i < BOARD_SIZE; i++) {
             std::cout << board[i] << " ";
@@ -63,12 +61,10 @@ public:
         std::cout << std::endl;
     }
 
-    EMSCRIPTEN_KEEPALIVE
     int getCurrentPlayer() const {
         return currentPlayer;
     }
 
-    EMSCRIPTEN_KEEPALIVE
     const int* getBoard() const {
         return board.data();
     }
@@ -105,6 +101,40 @@ private:
     }
     
 };
+
+// Need to add global wrapper functions so Dockerfile can see them
+
+MancalaGame game;
+
+extern "C" {
+
+    EMSCRIPTEN_KEEPALIVE
+    void makeMove(int pit) {
+        game.makeMove(pit);
+    }
+
+    EMSCRIPTEN_KEEPALIVE
+    void undoMove() {
+        game.undoMove();
+    }
+
+    EMSCRIPTEN_KEEPALIVE
+    void displayBoard() {
+        game.displayBoard();
+    }
+
+    EMSCRIPTEN_KEEPALIVE
+    int getCurrentPlayer() {
+        return game.getCurrentPlayer();
+    }
+
+    EMSCRIPTEN_KEEPALIVE
+    const int* getBoard() {
+        return game.getBoard();
+    }
+
+}
+
 
 int main() {
     MancalaGame game;
