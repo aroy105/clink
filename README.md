@@ -2,11 +2,11 @@
 
 ## A _fast_ and _customizable_ Mancala State Simulator built by Arghya Roy
 
-Does your family yell at you when you take forever strategizing about Mancala moves? :speak_no_evil:
+Does your family yell at you when you take forever strategizing about Mancala? :speak_no_evil:
 
 Do you find it hard to remember your pre-calculated moves when playing against your significant other? :anguished:
 
-Are you bored by the cumbersome stones, the shallow pits, and the snail pace of physical mancala? :zzz:
+Are you frusturated by the cumbersome stones, the shallow pits, and the snail pace of physical Mancala? :zzz:
 
 Sounds like YOU :ok_woman: need Clink in your life!
 
