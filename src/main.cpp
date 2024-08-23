@@ -1,6 +1,8 @@
 #include <iostream> 
 #include <vector>
 #include <stack>
+#include <string>
+#include <sstream>
 #include <emscripten.h>
 
 // Mancala board has 14 holes. Each player has 6 holes and 1 store (scoring area).
@@ -21,9 +23,8 @@ public:
 
 
     void makeMove(int pit) {
-        if (!isValidMove(pit)) 
+        if (pit == VILLAIN_STORE || pit == HERO_STORE)
             return;
-        
         saveState();
 
         // Pick up stones from particular pit
@@ -38,10 +39,13 @@ public:
             if (currentIdx == HERO_STORE && currentPlayer == 1) continue;
             board[currentIdx]++;
             stones--;
-        }
 
+        }
         applyRules(currentIdx);
         switchPlayer();
+
+        displayBoard();
+        std::cout << getBoard() << std::endl;
     }
 
     void undoMove() {
@@ -65,8 +69,32 @@ public:
         return currentPlayer;
     }
 
-    const int* getBoard() const {
-        return board.data();
+    char* getBoard() {
+        std::ostringstream boardJson;
+        boardJson << "{";
+        
+        // Villain's row (top row)
+        boardJson << "\"rowvillain\": [";
+        for (int i = 0; i < 6; i++) {
+            boardJson << pits[12 - i];
+            if (i < 5) boardJson << ", ";
+        }
+        boardJson << "],";
+        
+        // Hero's row (bottom row)
+        boardJson << "\"rowhero\": [";
+        for (int i = 0; i < 6; i++) {
+            boardJson << pits[i];
+            if (i < 5) boardJson << ", ";
+        }
+        boardJson << "],";
+        
+        boardJson << "\"storevillain\": " << pits[13] << ",";
+        boardJson << "\"storehero\": " << pits[6];
+        boardJson << "}";
+
+        static std::string boardState = boardJson.str();
+        return boardState.c_str();
     }
 
 private:
@@ -129,7 +157,7 @@ extern "C" {
     }
 
     EMSCRIPTEN_KEEPALIVE
-    const int* getBoard() {
+    char* getBoard() {
         return game.getBoard();
     }
 

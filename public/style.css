@@ -53,11 +53,11 @@ body {
     background-color: #c8a772; 
 }
 
-.pit-row-1 {
+.pit-row-villain {
     grid-row: 1;
 }
 
-.pit-row-2 {
+.pit-row-hero {
     grid-row: 2;
 }
 
