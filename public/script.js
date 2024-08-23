@@ -64,10 +64,10 @@ document.addEventListener("DOMContentLoaded", function() {
         board = JSON.parse(boardState);
 
         for (let i = 0; i < 6; i++) {
-            document.getElementById(`pit-${i}`).textContent = board.row2[i];
-            document.getElementById(`pit-${12 - i}`).textContent = board.row1[i];
+            document.getElementById(`pit-${i}`).textContent = board.rowhero[i];
+            document.getElementById(`pit-${i + 7}`).textContent = board.rowvillain[i];
         }
-        document.getElementById('store-villain').textContent = board.store1;
-        document.getElementById('store-hero').textContent = board.store2;
+        document.getElementById('store-villain').textContent = board.storevillain;
+        document.getElementById('store-hero').textContent = board.storehero;
     }
 });

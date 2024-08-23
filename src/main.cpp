@@ -76,7 +76,7 @@ public:
         // Villain's row (top row)
         boardJson << "\"rowvillain\": [";
         for (int i = 0; i < 6; i++) {
-            boardJson << pits[12 - i];
+            boardJson << board[12 - i];
             if (i < 5) boardJson << ", ";
         }
         boardJson << "],";
@@ -84,17 +84,19 @@ public:
         // Hero's row (bottom row)
         boardJson << "\"rowhero\": [";
         for (int i = 0; i < 6; i++) {
-            boardJson << pits[i];
+            boardJson << board[i];
             if (i < 5) boardJson << ", ";
         }
         boardJson << "],";
         
-        boardJson << "\"storevillain\": " << pits[13] << ",";
-        boardJson << "\"storehero\": " << pits[6];
+        boardJson << "\"storevillain\": " << board[13] << ",";
+        boardJson << "\"storehero\": " << board[6];
         boardJson << "}";
 
-        static std::string boardState = boardJson.str();
-        return boardState.c_str();
+        std::string boardState = boardJson.str();
+        char* result = new char[boardState.size() + 1];
+        std::strcpy(result, boardState.c_str());
+        return result;
     }
 
 private:
