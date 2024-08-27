@@ -29,10 +29,13 @@ chmod +x run.sh
 ```
 6. The first time you do this, it'll probably take some time as some of the dependencies are being downloaded. Once all the downloads have finished and the terminal has finished running all the commands, go to your web browser, and enter this in as the url:
 ```
-http://localhost:8000
+http://localhost:8080
 ```
 
-If you want to run this again in the future, just repeat steps 3-6. 
+If you want to run this again in the future, just open Docker, navigate to the directory, and run
+```
+./run.sh
+```
 
 
 
