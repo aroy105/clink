@@ -113,3 +113,51 @@ body {
     font-size: 1.5rem;
     color: #333;
 }
+
+#top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px 20px;
+    background-color: #d2b48c;
+}
+
+#title {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    flex-grow: 1;
+    color: #333;
+}
+
+#left-controls, #right-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#left-controls button, #right-controls select {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: none;
+    background-color: #f5deb3;
+    color: #333;
+    cursor: pointer;
+}
+
+#left-controls button:hover, #right-controls select:hover {
+    background-color: #c8a772;
+}
+
+#current-player {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1.5rem;
+    color: #333;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}

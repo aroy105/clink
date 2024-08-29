@@ -7,12 +7,27 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div id="top-bar">
+        <div id="left-controls">
+            <button id="undo-button">Undo</button>
+            <button id="reset-button">Reset</button>
+        </div>
+        <div id="title">CLINK</div>
+        <div id="right-controls">
+            <select id="mode-select">
+                <option value="avalanche">Avalanche</option>
+                <option value="capture">Capture</option>
+            </select>
+        </div>
+    </div>
+
     <div id="villain-label" class="label">Villain</div>
     <div id="board"></div>
     <div id="hero-label" class="label">Hero</div>
-    <!-- <div id="current-player" class="current-player">Current Player: Hero</div> -->
+
+    <div id="current-player" class="current-player">Current Player: Hero</div>
+
     <script src="generated.js"></script>
     <script src="script.js"></script>
 </body>
-
 </html>

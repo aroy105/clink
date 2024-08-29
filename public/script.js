@@ -1,6 +1,9 @@
 document.addEventListener("DOMContentLoaded", function() {
     const boardElement = document.getElementById('board');
 
+    const currentPlayerElement = document.getElementById('current-player');
+    const modeSelect = document.getElementById('mode-select');
+
     const store1 = createStoreElement('store-villain', 13);
     const store2 = createStoreElement('store-hero', 6);
     
@@ -70,4 +73,5 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById('store-villain').textContent = board.storevillain;
         document.getElementById('store-hero').textContent = board.storehero;
     }
+
 });
