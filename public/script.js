@@ -29,6 +29,12 @@ document.addEventListener("DOMContentLoaded", function() {
         updateBoard();
     });
 
+    const undoButton = document.getElementById('undo-button');
+    undoButton.addEventListener('click', function() {
+        Module.ccall('undoMove', 'void', [], []);
+        updateBoard();
+    });
+
     Module.onRuntimeInitialized = function() {
         updateBoard();
     };
