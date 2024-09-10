@@ -131,6 +131,9 @@ body {
     text-align: center;
     flex-grow: 1;
     color: #333;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 #left-controls, #right-controls {
