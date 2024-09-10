@@ -58,6 +58,19 @@ public:
         history.pop();
     }
 
+    void resetGame() {
+        board = std::vector<int>(BOARD_SIZE, 4);
+        board[HERO_STORE] = 0;
+        board[VILLAIN_STORE] = 0;
+        currentPlayer = 0;
+
+        while (!history.empty()) {
+            history.pop();
+        }
+
+        std::cout << "Game reset!" << std::endl;
+    }
+
     void displayBoard() const {
         for (int i = 0; i < BOARD_SIZE; i++) {
             std::cout << board[i] << " ";
@@ -151,6 +164,11 @@ extern "C" {
     EMSCRIPTEN_KEEPALIVE
     void displayBoard() {
         game.displayBoard();
+    }
+
+    EMSCRIPTEN_KEEPALIVE
+    void resetGame() {
+        game.resetGame();
     }
 
     EMSCRIPTEN_KEEPALIVE

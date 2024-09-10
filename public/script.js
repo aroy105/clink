@@ -23,6 +23,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
     boardElement.appendChild(store2);
 
+    const resetButton = document.getElementById('reset-button');
+    resetButton.addEventListener('click', function() {
+        Module.ccall('resetGame', 'void', [], []);
+        updateBoard();
+    });
+
     Module.onRuntimeInitialized = function() {
         updateBoard();
     };
