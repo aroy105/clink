@@ -10,7 +10,7 @@ body {
 
 #board {
     display: grid;
-    grid-template-columns: 1fr repeat(6, 1fr) 1fr; /* Ensure equal space for both stores */
+    grid-template-columns: 1fr repeat(6, 1fr) 1fr;
     grid-template-rows: 1fr 1fr;
     gap: 10px;
     width: 90%;
@@ -121,6 +121,8 @@ body {
     width: 100%;
     padding: 10px 20px;
     background-color: #d2b48c;
+    position: fixed; 
+    top: 0;
 }
 
 #title {
@@ -135,6 +137,7 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
+    padding: 10px 20px;
 }
 
 #left-controls button, #right-controls select {
