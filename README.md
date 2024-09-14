@@ -31,6 +31,7 @@ chmod +x run.sh
 ```
 http://localhost:8080
 ```
+7. Once you are done playing, go back to your terminal, and control + C to kill the program. Then, open up Docker, and delete whatever container (which will have two random names slapped together) was created. 
 
 If you want to run this again in the future, just open Docker, navigate to the directory, and run
 ```
