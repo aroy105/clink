@@ -9,15 +9,19 @@ document.addEventListener("DOMContentLoaded", function() {
     
     boardElement.appendChild(store1);
 
+    // Hero's pits (indices 0 to 5)
     for (let i = 0; i < 6; i++) {
         const pit = createPitElement(`pit-${i}`, i);
         pit.classList.add('pit-row-hero');
         boardElement.appendChild(pit);
     }
 
-    for (let i = 5; i >= 0; i--) {
-        const pit = createPitElement(`pit-${12 - i}`, 7 + i); 
-        pit.classList.add('pit-row-villan');
+    // Villain's pits (indices 12 down to 7)
+    for (let i = 0; i < 6; i++) {
+        const pitId = `pit-${12 - i}`;
+        const index = 12 - i;
+        const pit = createPitElement(pitId, index);
+        pit.classList.add('pit-row-villain');
         boardElement.appendChild(pit);
     }
 
@@ -25,8 +29,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const resetButton = document.getElementById('reset-button');
     resetButton.addEventListener('click', function() {
-        Module.ccall('resetGame', 'void', [], []);
-        updateBoard();
+        setGameModeAndReset();
     });
 
     const undoButton = document.getElementById('undo-button');
@@ -35,8 +38,12 @@ document.addEventListener("DOMContentLoaded", function() {
         updateBoard();
     });
 
+    modeSelect.addEventListener('change', function() {
+        setGameModeAndReset();
+    });
+
     Module.onRuntimeInitialized = function() {
-        updateBoard();
+        setGameModeAndReset();
     };
 
     function createStoreElement(id, index) {
@@ -68,13 +75,14 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function updateBoard() {
-        boardState = Module.ccall('getBoard', 'string', [], []);
-        board = JSON.parse(boardState);
+        const boardState = Module.ccall('getBoard', 'string', [], []);
+        const board = JSON.parse(boardState);
 
         for (let i = 0; i < 6; i++) {
             document.getElementById(`pit-${i}`).textContent = board.rowhero[i];
-            document.getElementById(`pit-${i + 7}`).textContent = board.rowvillain[i];
+            document.getElementById(`pit-${12 - i}`).textContent = board.rowvillain[i];
         }
+
         document.getElementById('store-villain').textContent = board.storevillain;
         document.getElementById('store-hero').textContent = board.storehero;
 
@@ -85,6 +93,27 @@ document.addEventListener("DOMContentLoaded", function() {
         } else {
             currentPlayerElement.textContent = "Current Player: Villain";
         }
+    }
+
+    function setGameModeAndReset() {
+        // Get the selected mode from the dropdown
+        const selectedMode = modeSelect.value;
+        let mode;
+        if (selectedMode === 'capture') {
+            mode = 0;
+        } else if (selectedMode === 'avalanche') {
+            mode = 1;
+        } else if (selectedMode === 'avalanche-capture') {
+            mode = 2;
+        } else {
+            // Default to Capture 
+            mode = 0;
+        }
+
+        Module.ccall('setGameMode', 'void', ['number'], [mode]);
+        Module.ccall('resetGame', 'void', [], []);
+
+        updateBoard();
     }
 
 });
