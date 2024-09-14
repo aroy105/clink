@@ -63,14 +63,7 @@ document.addEventListener("DOMContentLoaded", function() {
     function handlePitClick(id) {
         const pit = document.getElementById(id);
         const index = parseInt(pit.dataset.index);
-    
-        Module.ccall(
-            'makeMove',
-            'void',
-            ['number'],
-            [index]
-        );
-        
+        Module.ccall('makeMove', 'void', ['number'], [index]);
         updateBoard();
     }
 
@@ -84,6 +77,14 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         document.getElementById('store-villain').textContent = board.storevillain;
         document.getElementById('store-hero').textContent = board.storehero;
+
+        const currentPlayer = Module.ccall('getCurrentPlayer', 'number', [], []);
+
+        if (currentPlayer == 0) {
+            currentPlayerElement.textContent = "Current Player: Hero";
+        } else {
+            currentPlayerElement.textContent = "Current Player: Villain";
+        }
     }
 
 });
