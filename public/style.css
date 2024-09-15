@@ -169,3 +169,19 @@ body {
     left: 50%;
     transform: translateX(-50%);
 }
+
+#mode-select {
+    text-align: center;
+    text-align-last: center;
+    width: 200px;
+    padding: 10px;
+    font-size: 1rem;
+    background-color: #f5deb3;
+    color: #333;
+    border-radius: 5px;
+    border: none;
+}
+
+#mode-select option {
+    text-align: center;
+}
