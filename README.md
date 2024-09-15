@@ -14,6 +14,8 @@ Clink is a simple Manacla State simulator that lets you plan and rapidly decide 
 
 Currently, three game modes exist: Capture, Avalanche, and Capture-Avalanche. The rules for Capture and Avalanche are based off GamePigeon rules, and for Capture-Avalanche, it's based off what the creator remembers the rules are from previous conversations and what makes sense. If the rules need to be modified, feel free to reach out to the creator. 
 
+![What you should see when you run the project](./default-view.jpeg)
+
 ## Installation
 1. Download this project, **OR** if you have Git, from the terminal run:
 ```
